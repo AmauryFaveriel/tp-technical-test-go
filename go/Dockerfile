@@ -1,11 +1,19 @@
-FROM golang:1.13-alpine
+FROM golang:1.13-alpine as build
 
-RUN mkdir /app
-
-WORKDIR /app
+WORKDIR /home/app
 
 COPY . .
 
-RUN go build main.go
+RUN go build -o webapp main.go
 
-CMD ["/app/main"]
+FROM alpine:3.11.5
+
+WORKDIR /home/app
+
+COPY public ./public
+
+COPY --from=build /home/app/webapp ./webapp
+
+CMD ["/home/app/webapp"]
+
+EXPOSE 8080
