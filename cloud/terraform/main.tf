@@ -1,6 +1,6 @@
 provider "aws" {
   version = "~> 2.0"
-  region = "eu-west-2"
+  region  = "eu-west-2"
 }
 
 data "aws_ami" "ubuntu" {
@@ -21,14 +21,14 @@ data "aws_ami" "ubuntu" {
 
 resource "aws_key_pair" "ssh_key" {
   public_key = file(var.public_ssh_key_file)
-  key_name = "technical-test-tp-ssh-key"
+  key_name   = "technical-test-tp-ssh-key"
 }
 
 module "staging" {
-  source = "./application"
+  source            = "./application"
 
-  instance_ami = data.aws_ami.ubuntu.id
+  instance_ami      = data.aws_ami.ubuntu.id
   instance_key_name = aws_key_pair.ssh_key.key_name
-  instance_count = 1
-  stage = "staging"
+  instance_count    = 1
+  stage             = "staging"
 }

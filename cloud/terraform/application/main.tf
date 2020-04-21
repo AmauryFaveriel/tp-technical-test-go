@@ -9,7 +9,7 @@ resource "aws_instance" "web" {
   ]
 
   tags            = {
-    Name  = "${var.stage}-application"
+    Name  = "${var.stage}_application"
     Owner = "technical-test-tp"
     Stage = var.stage
   }
@@ -51,8 +51,8 @@ resource "aws_elasticache_cluster" "application_cluster" {
   parameter_group_name = "default.redis3.2"
   engine_version       = "3.2.10"
   port                 = 6379
-  security_group_name  = [
-    aws_security_group.cluster_security_group.name
+  security_group_ids   = [
+    aws_security_group.cluster_security_group.id
   ]
 }
 
@@ -65,14 +65,9 @@ resource "aws_security_group" "cluster_security_group" {
     from_port   = 6379
     to_port     = 6379
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [
+      aws_security_group.app_security_group.id
+    ]
   }
 }
 
