@@ -4,8 +4,6 @@ WORKDIR /home/app
 
 COPY . .
 
-ARG REDIS_HOST
-
 RUN go build -o webapp main.go
 
 FROM alpine:3.11.5

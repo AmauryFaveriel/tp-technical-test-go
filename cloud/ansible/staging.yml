@@ -1,7 +1,7 @@
 ---
 
-- name: Install common and docker
-  hosts: tag_component_application
+- name: Install common and docker on staging
+  hosts: tag_stage_staging
   roles:
     - { role: common, become: yes }
     - { role: geerlingguy.docker, become: yes }

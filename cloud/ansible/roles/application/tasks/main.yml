@@ -15,4 +15,12 @@
       args:
         REDIS_HOST: "{{ application_redis_host }}"
     source: build
-  become: yes
+
+- name: Import docker-compose
+  template:
+    src: docker-compose.yml
+    dest: /home/ubuntu/application
+
+- name: Start docker-compose
+  docker_compose:
+    project_src: /home/ubuntu/application
