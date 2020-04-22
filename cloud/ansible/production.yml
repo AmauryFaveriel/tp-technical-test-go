@@ -1,0 +1,6 @@
+---
+
+- name: Install common and docker
+  hosts: tag_component_application
+  roles:
+    - { role: geerlingguy.docker, become: yes }

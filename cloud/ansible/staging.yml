@@ -1,0 +1,12 @@
+---
+
+- name: Install common and docker
+  hosts: tag_component_application
+  roles:
+    - { role: common, become: yes }
+    - { role: geerlingguy.docker, become: yes }
+
+- name: Install web service
+  hosts: "tag_component_application:&tag_stage_staging"
+  roles:
+    - { role: application, tags: ["installApp"] }

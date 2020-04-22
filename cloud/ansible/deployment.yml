@@ -1,6 +1,0 @@
----
-
-- name: Install Docker on server
-  hosts: tag_Name_staging_application
-  roles:
-    - geerlingguy.docker

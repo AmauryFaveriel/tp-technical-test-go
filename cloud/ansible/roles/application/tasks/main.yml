@@ -1,0 +1,18 @@
+---
+
+- name: Get repository
+  git:
+    repo: 'https://github.com/AmauryFaveriel/tp-technical-test-go.git'
+    dest: /home/ubuntu/application
+    version: "{{ git_branch }}"
+
+- name: Build docker image
+  docker_image:
+    name: "{{ docker_image_name }}"
+    tag: "{{ docker_image_tag }}"
+    build:
+      path: /home/ubuntu/application/go
+      args:
+        REDIS_HOST: "{{ application_redis_host }}"
+    source: build
+  become: yes

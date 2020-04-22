@@ -1,0 +1,17 @@
+---
+
+# Install Python 2, as it is needed to execute ansible modules on remote hosts
+- name: 'install python3'
+  raw: apt update && apt-get -y install python3
+  tags: ["install"]
+
+- name: Gather facts
+  setup:
+
+- name: install packages
+  apt:
+    pkg:
+      - python-setuptools
+      - python-pip
+    state: present
+    update_cache: yes

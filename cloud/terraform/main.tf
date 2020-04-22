@@ -32,3 +32,12 @@ module "staging" {
   instance_count    = 1
   stage             = "staging"
 }
+
+module "production" {
+  source            = "./application"
+
+  instance_ami      = data.aws_ami.ubuntu.id
+  instance_key_name = aws_key_pair.ssh_key.key_name
+  instance_count    = 2
+  stage             = "production"
+}

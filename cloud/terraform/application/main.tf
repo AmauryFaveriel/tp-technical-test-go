@@ -1,4 +1,4 @@
-resource "aws_instance" "web" {
+resource "aws_instance" "application" {
   ami             = var.instance_ami
   instance_type   = var.instance_type
   count           = var.instance_count
@@ -9,15 +9,15 @@ resource "aws_instance" "web" {
   ]
 
   tags            = {
-    Name  = "${var.stage}_application"
-    Owner = "technical-test-tp"
-    Stage = var.stage
+    Name      = "${var.stage}_application"
+    component = "application"
+    stage     = var.stage
   }
 }
 
 resource "aws_security_group" "app_security_group" {
   name        = "${var.stage}-technical-test-tp-app-security-group"
-  description = "Allow connection on port 22 and 8080 for webapp"
+  description = "Allow connection on port 22 and 8080 for application"
 
   ingress {
     description = "SSH access port"
@@ -90,7 +90,7 @@ resource "aws_elb" "application_elb" {
     interval            = 30
   }
 
-  instances                   = aws_instance.web.*.id
+  instances                   = aws_instance.application.*.id
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
