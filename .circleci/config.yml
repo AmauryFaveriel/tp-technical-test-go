@@ -11,6 +11,11 @@ jobs:
           name: Create artifacts directory
           command: mkdir -p ~/repo/artifacts
       - run:
+          name: test
+          command: |
+            ls ~/repo
+            ls ~/repo/go
+      - run:
           name: Build image
           command: docker build -t "${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}" .
       - run:
