@@ -12,7 +12,7 @@ jobs:
           command: mkdir -p ~/repo/artifacts
       - run:
           name: Build image
-          command: docker build -t "${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+          command: docker build -t "${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}" .
       - run:
           name: Save image in artifacts directory
           command: docker save "${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}" -o ~/repo/artifacts/image
