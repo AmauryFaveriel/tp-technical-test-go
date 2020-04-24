@@ -13,5 +13,11 @@
     pkg:
       - python-setuptools
       - python-pip
+      - docker-compose
     state: present
     update_cache: yes
+
+- name: Install pip dependencies
+  pip:
+    name:
+      - docker

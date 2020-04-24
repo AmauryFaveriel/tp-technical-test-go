@@ -2,11 +2,12 @@
 
 - name: Install common and docker on staging
   hosts: tag_stage_staging
+  become: yes
   roles:
-    - { role: common, become: yes }
-    - { role: geerlingguy.docker, become: yes }
+    - { role: common }
+    - { role: geerlingguy.docker }
 
 - name: Install web service
-  hosts: "tag_component_application:&tag_stage_staging"
+  hosts: ["tag_component_application:&tag_stage_staging"]
   roles:
-    - { role: application, tags: ["installApp"] }
+    - { role: application, tags: ["application"] }

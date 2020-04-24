@@ -1,2 +1,2 @@
 application_redis_host: production-technical-test-tp-cluster.2xhmpk.0001.euw2.cache.amazonaws.com
-git_branch: master
+application_git_branch: master

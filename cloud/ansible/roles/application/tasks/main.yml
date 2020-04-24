@@ -2,25 +2,26 @@
 
 - name: Get repository
   git:
-    repo: 'https://github.com/AmauryFaveriel/tp-technical-test-go.git'
-    dest: /home/ubuntu/application
-    version: "{{ git_branch }}"
+    repo: "{{ application_git_repository }}"
+    dest: "{{ application_directory }}"
+    version: "{{ application_git_branch }}"
 
 - name: Build docker image
   docker_image:
-    name: "{{ docker_image_name }}"
-    tag: "{{ docker_image_tag }}"
+    name: "{{ application_docker_image }}"
+    tag: "{{ application_docker_tag }}"
     build:
-      path: /home/ubuntu/application/go
-      args:
-        REDIS_HOST: "{{ application_redis_host }}"
+      path: "{{ application_directory }}/go"
     source: build
 
 - name: Import docker-compose
   template:
     src: docker-compose.yml
-    dest: /home/ubuntu/application
+    dest: "{{ application_directory }}/docker-compose.yml"
+    owner: "{{ application_user }}"
+    group: "{{ application_group }}"
+  notify: Restart docker compose
 
 - name: Start docker-compose
   docker_compose:
-    project_src: /home/ubuntu/application
+    project_src: "{{ application_directory }}"

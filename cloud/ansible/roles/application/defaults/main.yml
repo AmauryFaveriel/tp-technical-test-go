@@ -1,0 +1,13 @@
+application_user: ubuntu
+application_group: "{{ application_user }}"
+application_directory: "/home/{{ application_user }}/application"
+
+application_docker_image: amauryfaveriel/tp-test-technique-go
+application_docker_tag: latest
+
+application_redis_host: ""
+application_redis_port: 6379
+
+application_port: 8080
+
+application_git_repository: https://github.com/AmauryFaveriel/tp-technical-test-go.git

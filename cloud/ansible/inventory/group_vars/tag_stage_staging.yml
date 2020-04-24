@@ -1,4 +1,5 @@
 application_redis_host: staging-technical-test-tp-cluster.2xhmpk.0001.euw2.cache.amazonaws.com
-git_branch: master
-docker_image_name: amauryfaveriel/tp-test-technique-go
-docker_image_tag: 1.0
+application_git_branch: master
+
+application_docker_image: amauryfaveriel/tp-test-technique-go
+application_docker_tag: 1.0
