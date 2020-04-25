@@ -12,8 +12,7 @@
   apt:
     pkg:
       - python-setuptools
-      - python-pip
-      - docker-compose
+      - python3-pip
     state: present
     update_cache: yes
 
@@ -21,3 +20,4 @@
   pip:
     name:
       - docker
+      - docker-compose
