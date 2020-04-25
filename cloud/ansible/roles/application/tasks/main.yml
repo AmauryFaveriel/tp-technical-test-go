@@ -1,19 +1,5 @@
 ---
 
-- name: Get repository
-  git:
-    repo: "{{ application_git_repository }}"
-    dest: "{{ application_directory }}"
-    version: "{{ application_git_branch }}"
-
-- name: Build docker image
-  docker_image:
-    name: "{{ application_docker_image }}"
-    tag: "{{ application_docker_tag }}"
-    build:
-      path: "{{ application_directory }}/go"
-    source: build
-
 - name: Import docker-compose
   template:
     src: docker-compose.yml
