@@ -1,6 +1,6 @@
 application_user: ubuntu
 application_group: "{{ application_user }}"
-application_directory: "/home/{{ application_user }}/application"
+application_directory: "/home/{{ application_user }}"
 
 application_docker_image: amauryfaveriel/tp-test-technique-go
 application_docker_tag: latest
