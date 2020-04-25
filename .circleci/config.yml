@@ -48,4 +48,4 @@ workflows:
       - build
       - push:
           requires:
-            -build
+            - build
